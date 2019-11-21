@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "s#",
+    "#i"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:redstone"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "glyph:scribingtools"
+  }
+}

@@ -2,6 +2,7 @@ package com.chaosfox13.glyph;
 
 import com.chaosfox13.glyph.blocks.FirstBlock;
 import com.chaosfox13.glyph.blocks.ModBlocks;
+import com.chaosfox13.glyph.items.ScribingTools;
 import com.chaosfox13.glyph.setup.ClientProxy;
 import com.chaosfox13.glyph.setup.IProxy;
 import com.chaosfox13.glyph.setup.ModSetup;
@@ -9,6 +10,7 @@ import com.chaosfox13.glyph.setup.ServerProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.FireworkStarItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -29,7 +31,7 @@ import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("glyph")
-public class glyph
+public class Glyph
 {
     public static IProxy proxy = DistExecutor.runForDist(() ->() -> new ClientProxy(),()->()-> new ServerProxy());
 
@@ -37,7 +39,7 @@ public class glyph
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public glyph() {
+    public Glyph() {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 
@@ -65,6 +67,7 @@ public class glyph
             Item.Properties properties = new Item.Properties()
                     .group(setup.itemGroup);
             event.getRegistry().register(new BlockItem(ModBlocks.FIRSTBLOCK, properties).setRegistryName("firstblock"));
+            event.getRegistry().register(new ScribingTools());
         }
     }
 }

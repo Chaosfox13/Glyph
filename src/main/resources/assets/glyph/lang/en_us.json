@@ -1,5 +1,8 @@
 {
   "block.glyph.firstblock": "First Block",
+
+  "item.glyph.scribingtools": "Scribing Tools",
+
   "_comment": "Creative Tabs",
   "itemGroup.glyph": "Glyph"
 }
