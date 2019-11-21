@@ -1,5 +1,10 @@
 {
   "variants": {
-    "": { "model": "glyph:block/firstblock" }
+    "facing=north": { "model": "glyph:block/firstblock" },
+    "facing=south": { "model": "glyph:block/firstblock", "y": 180 },
+    "facing=west":  { "model": "glyph:block/firstblock", "y": 270 },
+    "facing=east":  { "model": "glyph:block/firstblock", "y": 90 },
+    "facing=up":  { "model": "glyph:block/firstblock", "x": -90 },
+    "facing=down":  { "model": "glyph:block/firstblock", "x": 90 }
   }
 }

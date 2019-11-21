@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "glyph:block/firstblock"
+    "particle": "glyph:block/firstblock",
+    "up": "glyph:block/firstblock",
+    "down": "glyph:block/firstblock",
+    "east": "glyph:block/firstblock",
+    "west": "glyph:block/firstblock",
+    "north": "glyph:block/firstblock_front",
+    "south": "glyph:block/firstblock"
   }
 }
