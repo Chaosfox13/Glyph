@@ -58,9 +58,8 @@ public class FirstBlock extends Block {
                 NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tile, tile.getPos());
             }
         }
+        return true;
 
-        super.onBlockActivated(state, world, pos, player, handIn, result);
-        return false;
     }
 
 
