@@ -1,6 +1,7 @@
 package com.chaosfox13.glyph;
 
 import com.chaosfox13.glyph.blocks.FirstBlock;
+import com.chaosfox13.glyph.blocks.FirstBlockContainer;
 import com.chaosfox13.glyph.blocks.ModBlocks;
 import com.chaosfox13.glyph.items.ScribingTools;
 import com.chaosfox13.glyph.setup.ClientProxy;
@@ -10,11 +11,14 @@ import com.chaosfox13.glyph.setup.ServerProxy;
 import com.chaosfox13.glyph.tiles.FirstBlockTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FireworkStarItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -35,6 +39,7 @@ import java.util.stream.Collectors;
 @Mod("glyph")
 public class Glyph
 {
+    public static String MOD_ID = "glyph";
     public static IProxy proxy = DistExecutor.runForDist(() ->() -> new ClientProxy(),()->()-> new ServerProxy());
 
     public static ModSetup setup = new ModSetup();
@@ -74,6 +79,13 @@ public class Glyph
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event){
             event.getRegistry().register(TileEntityType.Builder.create(FirstBlockTile::new, ModBlocks.FIRSTBLOCK).build(null).setRegistryName("firstblock"));
+        }
+        @SubscribeEvent
+        public static void onContainerRegister(final RegistryEvent.Register<ContainerType<?>> event){
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new FirstBlockContainer(windowId, Glyph.proxy.getClientWorld(), pos, inv, Glyph.proxy.getClientPlayer());
+            }).setRegistryName("firstblock"));
         }
     }
 }
