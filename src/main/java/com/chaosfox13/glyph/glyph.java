@@ -47,9 +47,7 @@ public class Glyph
 {
     public static String MOD_ID = "glyph";
     public static IProxy proxy = DistExecutor.runForDist(() ->() -> new ClientProxy(),()->()-> new ServerProxy());
-
     public static ModSetup setup = new ModSetup();
-
     private static final Logger LOGGER = LogManager.getLogger();
 
     public Glyph() {
@@ -63,8 +61,7 @@ public class Glyph
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("glyph-common.toml"));
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
+    private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
@@ -77,20 +74,25 @@ public class Glyph
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
-            event.getRegistry().register(new FirstBlock());
-        }
-        @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
             Item.Properties properties = new Item.Properties()
                     .group(setup.itemGroup);
+
             event.getRegistry().register(new BlockItem(ModBlocks.FIRSTBLOCK, properties).setRegistryName("firstblock"));
+
             event.getRegistry().register(new ScribingTools());
         }
+
+        @SubscribeEvent
+        public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
+            event.getRegistry().register(new FirstBlock());
+        }
+
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event){
             event.getRegistry().register(TileEntityType.Builder.create(FirstBlockTile::new, ModBlocks.FIRSTBLOCK).build(null).setRegistryName("firstblock"));
         }
+
         @SubscribeEvent
         public static void onContainerRegister(final RegistryEvent.Register<ContainerType<?>> event){
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
@@ -98,7 +100,7 @@ public class Glyph
                 return new FirstBlockContainer(windowId, Glyph.proxy.getClientWorld(), pos, inv, Glyph.proxy.getClientPlayer());
             }).setRegistryName("firstblock"));
         }
-        /*
+
         @SubscribeEvent
         public static void onEntityRegister(final RegistryEvent.Register<EntityType<?>> event){
             event.getRegistry().register(EntityType.Builder.create(FirstMob::new, EntityClassification.CREATURE)
@@ -106,6 +108,6 @@ public class Glyph
                     .setShouldReceiveVelocityUpdates(false)
                     .build("firstmob")
                     .setRegistryName(Glyph.MOD_ID,"firstmob"));
-        }*/
+        }
     }
 }

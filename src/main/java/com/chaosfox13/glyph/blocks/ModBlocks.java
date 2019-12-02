@@ -9,11 +9,14 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ModBlocks {
     @ObjectHolder("glyph:firstblock")
     public static FirstBlock FIRSTBLOCK;
-
     @ObjectHolder("glyph:firstblock")
     public static TileEntityType<FirstBlockTile> FIRSTBLOCK_TILE;
     @ObjectHolder("glyph:firstblock")
     public static ContainerType<FirstBlockContainer> FIRSTBLOCK_CONTAINER;
-
+    @ObjectHolder("glyph:basicdrune")
+    public static FirstBlock BASICRUNE;
 
 }
+
+
+

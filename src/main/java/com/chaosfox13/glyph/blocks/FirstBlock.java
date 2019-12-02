@@ -70,4 +70,5 @@ public class FirstBlock extends Block {
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder){
         builder.add(BlockStateProperties.FACING);
     }
+
 }
