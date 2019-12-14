@@ -3,7 +3,9 @@ package com.chaosfox13.glyph;
 import com.chaosfox13.glyph.blocks.FirstBlock;
 import com.chaosfox13.glyph.blocks.FirstBlockContainer;
 import com.chaosfox13.glyph.blocks.ModBlocks;
+import com.chaosfox13.glyph.blocks.runes.BasicRune;
 import com.chaosfox13.glyph.entities.FirstMob;
+import com.chaosfox13.glyph.items.DebugBinder;
 import com.chaosfox13.glyph.items.ScribingTools;
 import com.chaosfox13.glyph.setup.ClientProxy;
 import com.chaosfox13.glyph.setup.IProxy;
@@ -79,13 +81,16 @@ public class Glyph
                     .group(setup.itemGroup);
 
             event.getRegistry().register(new BlockItem(ModBlocks.FIRSTBLOCK, properties).setRegistryName("firstblock"));
+            event.getRegistry().register(new BlockItem(ModBlocks.BASICRUNE, properties).setRegistryName("basicrune"));
 
             event.getRegistry().register(new ScribingTools());
+            event.getRegistry().register(new DebugBinder());
         }
 
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
             event.getRegistry().register(new FirstBlock());
+            event.getRegistry().register(new BasicRune());
         }
 
         @SubscribeEvent
@@ -101,7 +106,7 @@ public class Glyph
             }).setRegistryName("firstblock"));
         }
 
-        @SubscribeEvent
+        /*@SubscribeEvent
         public static void onEntityRegister(final RegistryEvent.Register<EntityType<?>> event){
             event.getRegistry().register(EntityType.Builder.create(FirstMob::new, EntityClassification.CREATURE)
                     .size(1,1)
@@ -109,5 +114,7 @@ public class Glyph
                     .build("firstmob")
                     .setRegistryName(Glyph.MOD_ID,"firstmob"));
         }
+        */
     }
+
 }

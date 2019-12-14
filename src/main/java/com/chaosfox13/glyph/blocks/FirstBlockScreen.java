@@ -21,6 +21,7 @@ public class FirstBlockScreen extends ContainerScreen<FirstBlockContainer> {
 
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         this.font.drawString(this.title.getFormattedText(), 8.0F, 6.0F, 4210752);
+        this.font.drawString(this.container.getTarget().getFormattedText(), 8.0F, 6.0F, 4210752);
     }
 
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {

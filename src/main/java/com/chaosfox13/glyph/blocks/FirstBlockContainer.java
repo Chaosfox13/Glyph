@@ -1,5 +1,6 @@
 package com.chaosfox13.glyph.blocks;
 
+import com.chaosfox13.glyph.tiles.FirstBlockTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -9,6 +10,7 @@ import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -21,19 +23,24 @@ public class FirstBlockContainer extends Container {
     private TileEntity tile;
     private PlayerEntity playerEntity;
     private IItemHandler playerInv;
+    private BlockPos target;
 
     public FirstBlockContainer(int windowID, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity playerEntity) {
         super(FIRSTBLOCK_CONTAINER, windowID);
         tile= world.getTileEntity(pos);
         this.playerEntity = playerEntity;
         this.playerInv = new InvWrapper(playerInv);
+
         tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h ->{
             addSlot(new SlotItemHandler(h, 0,62, 24));
         });
         layoutPlayerInventory(10,70);
 
     }
+    public ITextComponent getTarget(){
 
+        return ((FirstBlockTile)tile).getTarget().toString();
+    }
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
         return isWithinUsableDistance(IWorldPosCallable.of(tile.getWorld(),tile.getPos()), playerEntity, ModBlocks.FIRSTBLOCK);

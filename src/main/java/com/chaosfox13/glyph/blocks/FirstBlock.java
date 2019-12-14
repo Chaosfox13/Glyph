@@ -47,6 +47,7 @@ public class FirstBlock extends Block {
     public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack){
         if (entity != null){
             world.setBlockState(pos, state.with(BlockStateProperties.FACING, getFacingFromEntity(pos,entity)), 2);
+
         }
     }
 

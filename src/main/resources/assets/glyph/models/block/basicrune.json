@@ -1,0 +1,7 @@
+{
+  "parent": "glyph:block/rune",
+  "textures": {
+    "particle": "block/black_wool",
+    "rune": "block/black_wool"
+  }
+}

@@ -13,6 +13,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -34,6 +35,7 @@ public class FirstBlockTile extends TileEntity implements ITickableTileEntity, I
     private LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
 
     private int counter;
+    private BlockPos target;
 
     public FirstBlockTile() {
         super(FIRSTBLOCK_TILE);
@@ -45,6 +47,13 @@ public class FirstBlockTile extends TileEntity implements ITickableTileEntity, I
             return;
         }
     }
+    public void setTarget(BlockPos newTarget){
+        target = newTarget;
+    }
+    public BlockPos getTarget(){
+        return target;
+    }
+
 
     @Override
     public void read(CompoundNBT tag) {
